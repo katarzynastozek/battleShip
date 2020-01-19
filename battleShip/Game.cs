@@ -14,15 +14,17 @@ namespace battleShip
         {
             Configure();
 
-            CreateShips();
-
-            do
+            if (rowsQty > 0 && columnsQty > 0)
             {
-                Shoot();
-            } while (!board.IsClear);
+                CreateShips();
 
-            ShowStatistics();
+                do
+                {
+                    Shoot();
+                } while (!board.IsClear);
 
+                ShowStatistics();
+            }
             Console.ReadLine();
         }
 
@@ -36,16 +38,18 @@ namespace battleShip
             columnsQty = Convert.ToInt32(Console.ReadLine());
 
             board = new Board(rowsQty, columnsQty);
+            if (rowsQty > 0 && rowsQty > 0)
+            {
+                //Configure ship amount.
+                Console.WriteLine("Podaj ilość statków jednomasztowych");
+                oneMastShipQty = Convert.ToByte(Console.ReadLine());
 
-            //Configure ship amount.
-            Console.WriteLine("Podaj ilość statków jednomasztowych");
-            oneMastShipQty = Convert.ToByte(Console.ReadLine());
+                Console.WriteLine("Podaj ilość statków dwumasztowych");
+                twoMastShipQty = Convert.ToByte(Console.ReadLine());
 
-            Console.WriteLine("Podaj ilość statków dwumasztowych");
-            twoMastShipQty = Convert.ToByte(Console.ReadLine());
-
-            Console.WriteLine("Podaj ilość statków trójmasztowych");
-            threeMastShipQty = Convert.ToByte(Console.ReadLine());
+                Console.WriteLine("Podaj ilość statków trójmasztowych");
+                threeMastShipQty = Convert.ToByte(Console.ReadLine());
+            }
         }
 
         private static void CreateShips()

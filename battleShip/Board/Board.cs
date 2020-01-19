@@ -14,7 +14,18 @@ namespace battleShip
 
         public Board(int _rowQty, int _columnQty)
         {
-            this.board = new BoardField[_rowQty, _columnQty];
+            
+            try
+            {
+                if (_rowQty > 0 && _columnQty > 0)
+                    this.board = new BoardField[_rowQty, _columnQty];
+            }
+            catch (ArgumentException e)
+            {
+
+                Console.WriteLine(e);
+            }
+            
 
             //Initialize board.
             for (int row = 0; row < _rowQty; row++)
@@ -28,7 +39,7 @@ namespace battleShip
 
         public BoardField GetField(int _row, int _column)
         {
-            return board[_row, _column];
+              return board[_row, _column];
         }
 
         public void LocateShip(Ship _ship)
@@ -76,19 +87,22 @@ namespace battleShip
         {
             Console.WriteLine("");
 
-            for (int row = 0; row < board.GetLength(0); row++)
+            if (board != null)
             {
-                for (int column = 0; column < board.GetLength(1); column++)
+                for (int row = 0; row < board.GetLength(0); row++)
                 {
-                    if (column + 1 < board.GetLength(1))
+                    for (int column = 0; column < board.GetLength(1); column++)
                     {
-                        Console.Write(board[row, column].GetShipType());
-                    }
-                    else
-                    {
-                        Console.WriteLine(board[row, column].GetShipType());
-                    }
+                        if (column + 1 < board.GetLength(1))
+                        {
+                            Console.Write(board[row, column].GetShipType());
+                        }
+                        else
+                        {
+                            Console.WriteLine(board[row, column].GetShipType());
+                        }
 
+                    }
                 }
             }
 

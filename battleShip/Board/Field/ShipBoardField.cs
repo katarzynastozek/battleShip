@@ -15,20 +15,29 @@ namespace battleShip
 
         public override char GetShipType()
         {
-            if(this.ship.GetType() == typeof(OneMastShip))
+            try
             {
-                return '1';
+                if (this.ship.GetType() == typeof(OneMastShip))
+                {
+                    return '1';
+                }
+                else if (this.ship.GetType() == typeof(TwoMastShip))
+                {
+                    return '2';
+                }
+                else if (this.ship.GetType() == typeof(ThreeMastShip))
+                {
+                    return '3';
+                }
+                else
+                {
+                    return '?';
+                }
+
             }
-            else if (this.ship.GetType() == typeof(TwoMastShip))
+            catch (NullReferenceException)
             {
-                return '2';
-            }
-            else if (this.ship.GetType() == typeof(ThreeMastShip))
-            {
-                return '3';
-            }
-            else
-            {
+                Console.WriteLine("Brak danego typu statku");
                 return '?';
             }
         }

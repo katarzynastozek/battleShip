@@ -1,4 +1,3 @@
-battleShip/obj*
-battleShip/bin*
-battleShip/.vs*
-.vs/*
+*obj*
+*bin*
+*vs*
