@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleShip
+﻿namespace BattleShip
 {
     public class EmptyBoardField : BoardField
     {

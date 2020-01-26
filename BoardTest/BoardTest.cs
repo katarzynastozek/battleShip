@@ -1,4 +1,4 @@
-using battleShip;
+using BattleShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BoardTest
@@ -9,53 +9,97 @@ namespace BoardTest
         [TestMethod]
         public void CreateBoard()
         {
-            Board board = new Board(-1, -3);
-            Assert.IsNotNull((object)board);
-            Assert.AreEqual(true, board.IsClear);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = -1,
+                ColumnsNumber = -3
+            };
+            Board board = new Board(boardConfig);
             Assert.AreEqual(0, board.ShipsOnBoard);
         }
         [TestMethod]
         public void CheckAmountOfShipsOnBoard()
         {
-            Board board = new Board(10, 10);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 10,
+                ColumnsNumber = 10
+            };
+            Board board = new Board(boardConfig);
             OneMastShip oneMastShip = new OneMastShip();
-            Assert.AreEqual(true, board.IsClear);
             board.LocateShip(oneMastShip);
-            Assert.AreEqual(false, board.IsClear);
             board.DecreaseShipsNumber();
-            board.PrintShips();
-            Assert.IsNotNull(board);
             Assert.AreEqual(0, board.ShipsOnBoard);
         }
         [TestMethod]
         public void CheckBoardFieldStatusEmpty()
         {
-            Board board = new Board(1, 1);
-            BoardField boardField=board.GetField(0, 0);
-            Assert.IsNotNull(boardField);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 1,
+                ColumnsNumber = 1
+            };
+            Board board = new Board(boardConfig);
+            BoardField boardField = board.GetField(0, 0);
             Assert.AreEqual('O', boardField.status);
         }
 
         [TestMethod]
         public void CheckBoardFieldStatusHit()
         {
-            Board board = new Board(3, 3);
-            BoardField boardField = board.GetField(0,0);
-            Assert.IsNotNull(boardField);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 3,
+                ColumnsNumber = 3
+            };
+            Board board = new Board(boardConfig);
+            BoardField boardField = board.GetField(0, 0);
             boardField.Shoot();
-            Assert.AreEqual('*', boardField.status);            
+            Assert.AreEqual('*', boardField.status);
         }
 
         [TestMethod]
         public void CheckLocateTwoMastShip()
         {
-            Board board = new Board(6,6);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 6,
+                ColumnsNumber = 6
+            };
+            Board board = new Board(boardConfig);
             TwoMastShip twoMastShip = new TwoMastShip();
             OneMastShip oneMastShip = new OneMastShip();
             board.LocateShip(twoMastShip);
             board.LocateShip(oneMastShip);
             Assert.AreEqual(2, board.ShipsOnBoard);
         }
+
+        [TestMethod]
+        public void CheckClearBoard()
+        {
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 1,
+                ColumnsNumber = 3
+            };
+            Board board = new Board(boardConfig);
+            Assert.AreEqual(true, board.IsClear);
+        }
+
+        [TestMethod]
+        public void CheckNotClearBoard()
+        {
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 1,
+                ColumnsNumber = 3
+            };
+            Board board = new Board(boardConfig);
+            OneMastShip oneMastShip = new OneMastShip();
+            board.LocateShip(oneMastShip);
+            Assert.AreEqual(false, board.IsClear);
+        }
+
 
     }
 }

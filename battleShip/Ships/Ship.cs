@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleShip
+﻿namespace BattleShip
 {
     public abstract class Ship
     {
@@ -15,9 +11,11 @@ namespace battleShip
 
         public int Lives { get { return lives; } }
         public char State { get { return status; } }
+        public abstract char Type { get; }
 
         protected int lives;
         protected char status;
+        protected char type;
 
         public void Damage()
         {       

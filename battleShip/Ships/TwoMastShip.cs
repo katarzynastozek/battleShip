@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleShip
+﻿namespace BattleShip
 {
     public class TwoMastShip : Ship
     {
+        public override char Type { get { return '2'; } }
+
         public TwoMastShip()
         {
             lives = 2;

@@ -1,113 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace battleShip
+namespace BattleShip 
 {
-    class Game
+    public class Game
     {
-        private static int oneMastShipQty, twoMastShipQty, threeMastShipQty;
-        private static int rowsQty, columnsQty;
-        private static Board board;
-        private static List<Ship> ships;
+        private readonly UserInterface _userInterface;
+        private readonly Board _board;
+        private readonly List<Ship> _fleet;
+        private readonly Statistics _statistics;
 
-        static void Main(string[] args)
+        public Game()
         {
-            Configure();
+            _userInterface = new UserInterface();
+            _statistics = new Statistics();
 
-            if (rowsQty > 0 && columnsQty > 0)
-            {
-                CreateShips();
+            _board = CreateBoard();
+            _fleet = CreateFleet();
 
-                do
-                {
-                    Shoot();
-                } while (!board.IsClear);
-
-                ShowStatistics();
-            }
-            Console.ReadLine();
+            LocateShipsOnBoard();
         }
 
-        private static void Configure()
+        public void Play()
         {
-            //Configure board size.
-            Console.WriteLine("Podaj ilość wierszy");
-            rowsQty = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Podaj ilość kolumn");
-            columnsQty = Convert.ToInt32(Console.ReadLine());
-
-            board = new Board(rowsQty, columnsQty);
-            if (rowsQty > 0 && rowsQty > 0)
+            do
             {
-                //Configure ship amount.
-                Console.WriteLine("Podaj ilość statków jednomasztowych");
-                oneMastShipQty = Convert.ToByte(Console.ReadLine());
+                ShotConfig shotConfig =  ConfigureShot();
+                string shotResult = Shoot(shotConfig);
 
-                Console.WriteLine("Podaj ilość statków dwumasztowych");
-                twoMastShipQty = Convert.ToByte(Console.ReadLine());
+                _userInterface.PrintShotResult(shotResult);
+                _userInterface.PrintNumberOfShipsOnBoard(_board.ShipsOnBoard);
+                _userInterface.PrintShots(_board.BoardFields);
 
-                Console.WriteLine("Podaj ilość statków trójmasztowych");
-                threeMastShipQty = Convert.ToByte(Console.ReadLine());
-            }
+            } while (!_board.IsClear);
         }
 
-        private static void CreateShips()
+        public void ShowStatistics()
         {
-            ships = new List<Ship>();
-            for (byte i = 0; i < threeMastShipQty; i++)
-            {
-                //new ThreeMastShip();
-                ships.Add(new ThreeMastShip());
-            }
-            for (byte i = 0; i < twoMastShipQty; i++)
-            {
-                //new TwoMastShip();
-                ships.Add(new TwoMastShip());
-            }
-            for (byte i = 0; i < oneMastShipQty; i++)
-            {
-                //new OneMastShip();
-                ships.Add(new OneMastShip());
-            }
+            _userInterface.PrintStatistics(_statistics);
+        }
 
-            //Locate ships on board
-            foreach (Ship ship in ships)
+        private Board CreateBoard()
+        {
+            BoardConfig boardConfig = new BoardConfig();
+            boardConfig.RowsNumber = _userInterface.GetBoardRowsSize();
+            boardConfig.ColumnsNumber = _userInterface.GetBoardColumnsSize();
+
+            return new Board(boardConfig);
+        }
+
+        private List<Ship> CreateFleet()
+        {
+            FleetConfig fleetConfig = new FleetConfig();
+            fleetConfig.OneMastShipCount = _userInterface.GetOneMastShipsAmount();
+            fleetConfig.TwoMastShipCount = _userInterface.GetTwoMastShipsAmount();
+            fleetConfig.ThreeMastShipCount = _userInterface.GetThreeMastShipsAmount();
+
+            ShipsFactory shipFactory = new ShipsFactory();
+
+            return shipFactory.GetFleet(fleetConfig);
+        }
+
+        private void LocateShipsOnBoard()
+        {
+            foreach (Ship ship in _fleet)
             {
-                board.LocateShip(ship);
+                _board.LocateShip(ship);
             }
         }
 
-        private static void Shoot()
+        private string Shoot(ShotConfig shotConfig)
         {
-            Console.WriteLine("Podaj wiersz");
-            int row = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Podaj kolumnę");
-            int column = Convert.ToInt32(Console.ReadLine());
-
-            BoardField targetField = board.GetField(--row, --column);
+            BoardField targetField = _board.GetField(shotConfig.RowNumber, shotConfig.ColumnNumber);
             targetField.Shoot();
-            if (targetField.ShotResult == Shot.Result.DESTROYED) board.DecreaseShipsNumber();
-            Statistics.NewShot(targetField.ShotResult != Shot.Result.MISSED);
+            if (targetField.ShotResult == Shot.Result.DESTROYED) _board.DecreaseShipsNumber();
+            _statistics.NewShot(targetField.ShotResult != Shot.Result.MISSED);
 
-            Console.Clear();
-            Console.WriteLine(targetField.ShotResult);
-            Console.WriteLine(string.Format("Ilość pozostałych statków: {0}", board.ShipsOnBoard));
-
-            board.PrintShots();
+            return targetField.ShotResult.ToString();
         }
 
-        private static void ShowStatistics()
+        private ShotConfig ConfigureShot()
         {
-            Console.WriteLine("----- STATYSTYKI GRY -----");
-            Console.WriteLine(string.Format("Ilość strzałów: {0}", Statistics.Shots));
-            Console.WriteLine(string.Format("Ilość celnych strzałów: {0}", Statistics.ShotsOnTarget));
-            Console.WriteLine(string.Format("Ilość nie trafionych strzałów: {0}", Statistics.ShotsMissed));
-            Console.WriteLine(string.Format("Skuteczność: {0}%", Statistics.Score));
+            ShotConfig shotConfig = new ShotConfig();
+            shotConfig.RowNumber = _userInterface.GetShotRow();
+            shotConfig.ColumnNumber = _userInterface.GetShotColumn();
+
+            return shotConfig;
         }
     }
-
 }
-
-

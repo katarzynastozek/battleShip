@@ -1,4 +1,4 @@
-using battleShip;
+using BattleShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShipTest
@@ -7,30 +7,24 @@ namespace ShipTest
     public class CreateShipTest
     {
         [TestMethod]
-        public void CheckIfOneMastShipIsCreatedCorrectly()
+        public void CheckTypeOfOneMastShip()
         {
             OneMastShip oneMastShip = new OneMastShip();
-            Assert.IsNotNull(oneMastShip);
-            Assert.AreEqual(1, (oneMastShip).Lives);
-            Assert.AreEqual(' ',(oneMastShip).State);
+            Assert.AreEqual('1',oneMastShip.Type);
         }
 
         [TestMethod]
-        public void CheckIfTwoMastShipIsCreatedCorrectly()
+        public void CheckTypeOfTwoMastShip()
         {
             TwoMastShip twoMastShip = new TwoMastShip();
-            Assert.IsNotNull(twoMastShip);
-            Assert.AreEqual(2, (twoMastShip).Lives);
-            Assert.AreEqual(' ', (twoMastShip).State);
+            Assert.AreEqual('2', twoMastShip.Type);
         }
 
         [TestMethod]
-        public void CheckIfThreeMastShipIsCreatedCorrectly()
+        public void CheckTypeOfThreeMastShip()
         {
             ThreeMastShip threeMastShip = new ThreeMastShip();
-            Assert.IsNotNull(threeMastShip);
-            Assert.AreEqual(3, (threeMastShip).Lives);
-            Assert.AreEqual(' ', (threeMastShip).State);
-        }
+            Assert.AreEqual('3', threeMastShip.Type);
+        }    
     }
 }

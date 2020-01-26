@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29424.173
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "battleShip", "battleShip\battleShip.csproj", "{98C939C1-3C1E-4B22-B845-B1181AED9177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleShip", "battleShip\BattleShip.csproj", "{98C939C1-3C1E-4B22-B845-B1181AED9177}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipTest", "ShipTest\ShipTest.csproj", "{14CC7753-FE68-4177-BCD7-9BB3972E7F5E}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShotTest", "ShotTest\ShotTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardTest", "BoardTest\BoardTest.csproj", "{D61E5D98-5298-4628-8608-2470D3F1FE38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipBoardFieldTest", "ShipBoardFieldTest\ShipBoardFieldTest.csproj", "{1010DDAA-D3D3-45D7-9FBB-B471960D422E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipBoardFieldTest", "ShipBoardFieldTest\ShipBoardFieldTest.csproj", "{1010DDAA-D3D3-45D7-9FBB-B471960D422E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\battleShip\battleShip.csproj" />
+    <ProjectReference Include="..\battleShip\BattleShip.csproj" />
   </ItemGroup>
 
 </Project>

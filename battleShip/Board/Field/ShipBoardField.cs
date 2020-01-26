@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleShip
+﻿namespace BattleShip
 {
     public class ShipBoardField : BoardField
     {
-        private Ship ship;
+        private readonly Ship ship;
 
         public ShipBoardField(Ship _ship)
         {
@@ -15,31 +11,7 @@ namespace battleShip
 
         public override char GetShipType()
         {
-            try
-            {
-                if (this.ship.GetType() == typeof(OneMastShip))
-                {
-                    return '1';
-                }
-                else if (this.ship.GetType() == typeof(TwoMastShip))
-                {
-                    return '2';
-                }
-                else if (this.ship.GetType() == typeof(ThreeMastShip))
-                {
-                    return '3';
-                }
-                else
-                {
-                    return '?';
-                }
-
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine("Brak danego typu statku");
-                return '?';
-            }
+            return this.ship.Type;
         }
 
         public override char GetStatus()

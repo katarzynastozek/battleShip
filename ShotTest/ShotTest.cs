@@ -1,4 +1,4 @@
-using battleShip;
+using BattleShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShotTest
@@ -40,7 +40,12 @@ namespace ShotTest
         [TestMethod]
         public void ResultOfHitNullShip()
         {
-            Board board = new Board(3, 3);
+            BoardConfig boardConfig = new BoardConfig
+            {
+                RowsNumber = 3,
+                ColumnsNumber = 3
+            };
+            Board board = new Board(boardConfig);
             BoardField boardField = board.GetField(0, 0);
             boardField.Shoot();
             Assert.AreEqual("Pud³o", boardField.ShotResult);

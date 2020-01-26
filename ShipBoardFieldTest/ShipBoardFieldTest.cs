@@ -1,4 +1,4 @@
-using battleShip;
+using BattleShip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -30,20 +30,12 @@ namespace ShipBoardFieldTest
         [TestMethod]
         public void CheckShipTypeThreeMastShip()
         {
-            ThreeMastShip threeMastShip=new ThreeMastShip();
+            ThreeMastShip threeMastShip = new ThreeMastShip();
             ShipBoardField shipBoardField;
             char shipType;
             shipBoardField = new ShipBoardField(threeMastShip);
             shipType = shipBoardField.GetShipType();
             Assert.AreEqual('3', shipType);
-        }
-        [TestMethod]
-        public void CheckShipTypeNullShip()
-        {
-            ShipBoardField shipBoardField = new ShipBoardField(null);
-            char shipType;
-            shipType = shipBoardField.GetShipType();
-            Assert.AreEqual('?', shipType);
         }
     }
 }

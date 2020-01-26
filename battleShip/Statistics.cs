@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleShip
+﻿namespace BattleShip
 {
-    public static class Statistics
+    public class Statistics
     {
-        public static int Shots { get { return shots; } }
-        public static int ShotsOnTarget { get { return shotsOnTarget; } }
-        public static int ShotsMissed { get { return shots - shotsOnTarget; } }
-        public static float Score { get { return shotsOnTarget * 100 / shots; } }
+        public int Shots { get { return shots; } }
+        public int ShotsOnTarget { get { return shotsOnTarget; } }
+        public int ShotsMissed { get { return shots - shotsOnTarget; } }
+        public float Score { get { return (float)shotsOnTarget * 100 / shots; } }
 
-        private static int shots = 0;
-        private static int shotsOnTarget = 0;
+        private int shots = 0;
+        private int shotsOnTarget = 0;
 
-        public static void NewShot(bool _onTarget)
+        public void NewShot(bool _onTarget)
         {
             shots++;
             if (_onTarget) shotsOnTarget++;
