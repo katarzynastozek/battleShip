@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleShip 
+namespace BattleShip
 {
     public class Game
     {
-        private readonly UserInterface _userInterface;
+        private readonly IUserInputOutput _userInterface;
         private readonly Board _board;
         private readonly List<Ship> _fleet;
         private readonly Statistics _statistics;
 
         public Game()
         {
-            _userInterface = new UserInterface();
+            _userInterface = new UserConsoleInputOutput();
             _statistics = new Statistics();
 
             _board = CreateBoard();
@@ -24,12 +24,12 @@ namespace BattleShip
         {
             do
             {
-                ShotConfig shotConfig =  ConfigureShot();
-                string shotResult = Shoot(shotConfig);
+                ShotConfig shotConfig = ConfigureShot();
+                Shot.Result shotResult = Shoot(shotConfig);
 
                 _userInterface.PrintShotResult(shotResult);
                 _userInterface.PrintNumberOfShipsOnBoard(_board.ShipsOnBoard);
-                _userInterface.PrintShots(_board.BoardFields);
+                _userInterface.PrintBoardStatus(_board);
 
             } while (!_board.IsClear);
         }
@@ -68,14 +68,17 @@ namespace BattleShip
             }
         }
 
-        private string Shoot(ShotConfig shotConfig)
+        private Shot.Result Shoot(ShotConfig shotConfig)
         {
             BoardField targetField = _board.GetField(shotConfig.RowNumber, shotConfig.ColumnNumber);
-            targetField.Shoot();
-            if (targetField.ShotResult == Shot.Result.DESTROYED) _board.DecreaseShipsNumber();
-            _statistics.NewShot(targetField.ShotResult != Shot.Result.MISSED);
+            Shot.Result shotResult = targetField.Shoot();
 
-            return targetField.ShotResult.ToString();
+            if (shotResult == Shot.Result.Destroyed) _board.DecreaseShipsNumber();
+
+            _statistics.IncreaseShots();
+            if (shotResult != Shot.Result.Missed) _statistics.IncreaseShotsOnTarget();
+
+            return shotResult;
         }
 
         private ShotConfig ConfigureShot()

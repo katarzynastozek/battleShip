@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.960
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleShip", "battleShip\BattleShip.csproj", "{98C939C1-3C1E-4B22-B845-B1181AED9177}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShotTest", "ShotTest\ShotTest.csproj", "{E8C03048-8928-4799-99FD-2C3EE042BE02}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardTest", "BoardTest\BoardTest.csproj", "{D61E5D98-5298-4628-8608-2470D3F1FE38}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipBoardFieldTest", "ShipBoardFieldTest\ShipBoardFieldTest.csproj", "{1010DDAA-D3D3-45D7-9FBB-B471960D422E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{D61E5D98-5298-4628-8608-2470D3F1FE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D61E5D98-5298-4628-8608-2470D3F1FE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D61E5D98-5298-4628-8608-2470D3F1FE38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1010DDAA-D3D3-45D7-9FBB-B471960D422E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1010DDAA-D3D3-45D7-9FBB-B471960D422E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1010DDAA-D3D3-45D7-9FBB-B471960D422E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1010DDAA-D3D3-45D7-9FBB-B471960D422E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

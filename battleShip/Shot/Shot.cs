@@ -2,17 +2,13 @@
 {
     public abstract class Shot
     {
-        public static class Result
+        public enum Result
         {
-            public const string MISSED = "Pudło";
-            public const string DAMAGED = "Trafiony";
-            public const string DESTROYED = "Zatopiony";
+            Missed,
+            Damaged,
+            Destroyed
         }
-
-        public string ShotResult { get { return shotResult; } }
-
-        protected string shotResult;
-
-        public abstract void Shoot();
+        
+        public abstract Result Shoot();
     }
 }

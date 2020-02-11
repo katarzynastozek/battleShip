@@ -2,16 +2,18 @@
 {
     public abstract class BoardField : Shot
     {
-        public static class Status
+        public enum State
         {
-            public const char EMPTY = 'O';
-            public const char SHOT_DOWN = '*';
+            Fine,
+            ShotDown
         }
 
-        public char status;
+        public bool HasShip { get { return _hasShip; } }
+        public State Status { get { return _status; } }
 
-        abstract public char GetStatus();
+        protected State _status;
+        protected bool _hasShip;
 
-        abstract public char GetShipType();
+        public abstract Ship GetShip();
     }
 }

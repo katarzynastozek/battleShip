@@ -18,7 +18,7 @@ namespace ShipTest
         }
 
         [TestMethod]
-        public void CheckCreateFleepShip()
+        public void CheckCreateNineShipsToFleepShip()
         {
             ShipsFactory shipsFactory = new ShipsFactory();
             FleetConfig fleetConfig = new FleetConfig();

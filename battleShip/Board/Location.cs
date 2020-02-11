@@ -24,7 +24,7 @@ namespace BattleShip
         {
             bool horizontal;
             bool rangeIsEmpty = false;
-            
+
             Random random = new Random();
 
             while (!rangeIsEmpty)
@@ -65,7 +65,7 @@ namespace BattleShip
                     if (column < 0 || column >= board.GetLength(1)) continue;
 
                     //Check if space is empty
-                    if (board[row, column].GetStatus() != EmptyBoardField.Status.EMPTY)
+                    if (board[row, column].HasShip)
                     {
                         result = false;
                         break;
@@ -75,6 +75,5 @@ namespace BattleShip
 
             return result;
         }
-
     }
 }

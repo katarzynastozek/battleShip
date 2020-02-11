@@ -6,6 +6,9 @@ namespace BattleShip
     {
         public bool IsClear { get { return shipsOnBoard == 0; } }
         public int ShipsOnBoard { get { return shipsOnBoard; } }
+        public int RowsCount { get { return _board.GetLength(0); } }
+        public int ColumnsCount { get { return _board.GetLength(1); } }
+
         public BoardField[,] BoardFields { get { return _board; } }
 
         private readonly BoardField[,] _board;
@@ -13,14 +16,14 @@ namespace BattleShip
 
         public Board(BoardConfig boardConfiguration)
         {
-            
+
             try
             {
                 if (boardConfiguration.RowsNumber > 0 && boardConfiguration.ColumnsNumber > 0)
                 {
                     this._board = new BoardField[boardConfiguration.RowsNumber, boardConfiguration.ColumnsNumber];
                     Initialize();
-                }                   
+                }
             }
             catch (ArgumentException e)
             {
@@ -42,7 +45,7 @@ namespace BattleShip
 
         public BoardField GetField(int _row, int _column)
         {
-              return _board[_row, _column];
+            return _board[_row, _column];
         }
 
         public void LocateShip(Ship @Ship)

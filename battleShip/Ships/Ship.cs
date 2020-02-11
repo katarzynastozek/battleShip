@@ -2,43 +2,33 @@
 {
     public abstract class Ship
     {
-        public static class Status
+        public enum State
         {
-            public const char UNDAMAGED = ' ';
-            public const char DAMAGED = '/';
-            public const char DESTROYED = 'X';
+            Undamaged,
+            Damaged,
+            Destroyed
         }
 
-        public int Lives { get { return lives; } }
-        public char State { get { return status; } }
-        public abstract char Type { get; }
+        public int Lives { get { return _lives; } }
+        public State Status { get { return _status; } }
 
-        protected int lives;
-        protected char status;
-        protected char type;
+        protected int _lives;
+        protected State _status;
 
         public void Damage()
-        {       
-            if (lives > 0) DecreaseLive();
+        {
+            if (_lives > 0) DecreaseLive();
             UpdateStatus();
         }
 
         private void UpdateStatus()
         {
-            if (lives > 0)
-            {
-                status = Ship.Status.DAMAGED;
-            }
-            else
-            {
-                status = Ship.Status.DESTROYED;
-            }
+            _status = _lives > 0 ? _status = Ship.State.Damaged : _status = Ship.State.Destroyed;
         }
 
         private void DecreaseLive()
         {
-            this.lives--;
+            this._lives--;
         }
-
     }
 }

@@ -1,12 +1,12 @@
 ﻿namespace BattleShip
 {
-    public class BattleShip
+    public static class BattleShip
     {
         static void Main(string[] args)
         {
-            Game BattleShip = new Game();
-            BattleShip.Play();
-            BattleShip.ShowStatistics();
+            Game battleShip = new Game();
+            battleShip.Play();
+            battleShip.ShowStatistics();
         }
     }
 }

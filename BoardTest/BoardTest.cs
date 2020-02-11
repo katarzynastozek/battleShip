@@ -41,7 +41,7 @@ namespace BoardTest
             };
             Board board = new Board(boardConfig);
             BoardField boardField = board.GetField(0, 0);
-            Assert.AreEqual('O', boardField.status);
+            Assert.AreEqual(BoardField.State.Fine, boardField.Status);
         }
 
         [TestMethod]
@@ -55,11 +55,11 @@ namespace BoardTest
             Board board = new Board(boardConfig);
             BoardField boardField = board.GetField(0, 0);
             boardField.Shoot();
-            Assert.AreEqual('*', boardField.status);
+            Assert.AreEqual(BoardField.State.ShotDown, boardField.Status);
         }
 
         [TestMethod]
-        public void CheckLocateTwoMastShip()
+        public void CheckLocateTwoShipsOnBoard()
         {
             BoardConfig boardConfig = new BoardConfig
             {

@@ -2,14 +2,10 @@
 {
     public class OneMastShip : Ship
     {
-        public override char Type { get { return '1'; } }
-
         public OneMastShip()
         {
-            lives = 1;
-            status = Ship.Status.UNDAMAGED;
+            _lives = 1;
+            _status = Ship.State.Undamaged;
         }
-
-        
     }
 }

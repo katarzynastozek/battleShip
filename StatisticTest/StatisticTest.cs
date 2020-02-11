@@ -13,7 +13,7 @@ namespace StatisticTest
             Statistics statistics = new Statistics();
             for (int i = 0; i < targetShots; i++)
             {
-                statistics.NewShot(true);
+                statistics.IncreaseShotsOnTarget();
             }
             Assert.AreEqual(targetShots, statistics.ShotsOnTarget);
         }
@@ -25,7 +25,7 @@ namespace StatisticTest
             Statistics statistics = new Statistics();
             for (int i = 0; i < missedShots; i++)
             {
-                statistics.NewShot(false);
+                statistics.IncreaseShots();
             }
             Assert.AreEqual(missedShots, statistics.ShotsMissed);
         }
@@ -38,11 +38,12 @@ namespace StatisticTest
             Statistics statistics = new Statistics();
             for (int i = 0; i < targetShots; i++)
             {
-                statistics.NewShot(true);
+                statistics.IncreaseShots();
+                statistics.IncreaseShotsOnTarget();
             }
             for (int i = 0; i < missedShots; i++)
             {
-                statistics.NewShot(false);
+                statistics.IncreaseShots();
             }
             Assert.AreEqual(targetShots + missedShots, statistics.Shots);
         }
@@ -55,11 +56,12 @@ namespace StatisticTest
             Statistics statistics = new Statistics();
             for (int i = 0; i < targetShots; i++)
             {
-                statistics.NewShot(true);
+                statistics.IncreaseShots();
+                statistics.IncreaseShotsOnTarget();
             }
             for (int i = 0; i < missedShots; i++)
             {
-                statistics.NewShot(false);
+                statistics.IncreaseShots();
             }
             Assert.AreEqual(targetShots * 100 / (targetShots + missedShots), statistics.Score);
         }

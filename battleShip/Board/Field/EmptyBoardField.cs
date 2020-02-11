@@ -2,26 +2,22 @@
 {
     public class EmptyBoardField : BoardField
     {
-
         public EmptyBoardField()
         {
-            this.status = Status.EMPTY;
+            this._hasShip = false;
+            this._status = State.Fine;
         }
 
-        public override char GetStatus()
+        public override Ship GetShip()
         {
-            return this.status;
+            Ship ship = null;
+            return ship;
         }
 
-        public override void Shoot()
+        public override Shot.Result Shoot()
         {
-            status = Status.SHOT_DOWN;
-            shotResult = Shot.Result.MISSED;
-        }
-
-        public override char GetShipType()
-        {
-            return Status.EMPTY;
+            _status = State.ShotDown;
+            return Shot.Result.Missed;
         }
     }
 }

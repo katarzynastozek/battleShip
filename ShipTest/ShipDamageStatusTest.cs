@@ -10,7 +10,7 @@ namespace ShipTest
         public void CheckStatusOfNoDamageShip()
         {
             ThreeMastShip threeMastShip = new ThreeMastShip();
-            Assert.AreEqual(' ', (threeMastShip).State);
+            Assert.AreEqual(Ship.State.Undamaged, (threeMastShip).Status);
         }
 
         [TestMethod]
@@ -18,7 +18,7 @@ namespace ShipTest
         {
             OneMastShip oneMastShip = new OneMastShip();
             (oneMastShip).Damage();
-            Assert.AreEqual('X', (oneMastShip).State);
+            Assert.AreEqual(Ship.State.Destroyed, (oneMastShip).Status);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace ShipTest
         {
             TwoMastShip twoMastShip = new TwoMastShip();
             (twoMastShip).Damage();
-            Assert.AreEqual('/', (twoMastShip).State);
+            Assert.AreEqual(Ship.State.Damaged, (twoMastShip).Status);
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace ShipTest
         {
             ThreeMastShip threeMastShip = new ThreeMastShip();
             (threeMastShip).Damage();
-            Assert.AreEqual('/', (threeMastShip).State);
+            Assert.AreEqual(Ship.State.Damaged, (threeMastShip).Status);
         }
 
         [TestMethod]
